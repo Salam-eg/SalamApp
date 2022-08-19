@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Background, Logo, Header, Paragraph, Button, ImageButton } from '../../Components';
-import { View } from 'react-native';
 import { mainScreen } from '../../Utils/Constants/ScreenNames';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { firebaseApp } from '../../../environment/config';
@@ -20,7 +19,7 @@ export default function StartScreen({ navigation }) {
     }, []);
 
     return (
-        <Background requiredStyle={{ marginTop: '20%' }}>
+        <Background requiredStyle={{ marginTop: '20%' }} navigate={navigation.navigate}>
             <Logo />
             <Header>Salam</Header>
             {/* <Paragraph>
