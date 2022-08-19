@@ -1,18 +1,17 @@
 
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Background, Header, MuteIcon } from '../../Components';
 import { muteIcons } from '../../Utils/Helpers/MutePageHelpers';
 export default class Mute extends React.Component {
     render() {
-        console.log(muteIcons)
         return (
-            <Background style={{marginTop:'5%'}}>
+            <Background style={{marginTop:'5%'}} disableMuteIcon="true" >
                 <View style={styles.muteHeader}>
                 <Header > Click on any icon to play its voice over </Header>
                 </View>
             <View style={styles.container}>
-                {muteIcons.map((icon, i) =>  <MuteIcon key={icon.id} image={icon.uri} text={icon.label}/> )}
+                {muteIcons.map((icon, i) =>  <MuteIcon key={icon.id} image={icon.uri} text={icon.label} audio={icon.audio} /> )}
             </View>
             </Background>
         )

@@ -3,16 +3,14 @@ import { ImageBackground, StyleSheet, KeyboardAvoidingView, ScrollView, View, Te
 import { theme } from '../../Utils/Theme/Theme';
 import backgroundDot from '../../assets/background_dot.png';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faHandsAslInterpreting } from '@fortawesome/free-solid-svg-icons/faHandsAslInterpreting'
+import { faHandsAslInterpreting } from '@fortawesome/free-solid-svg-icons/faHandsAslInterpreting';
 import { muteScreen } from '../../Utils/Constants/ScreenNames';
 
-const Background = ({ requiredStyle, children, navigate }) => {
+const Background = ({ requiredStyle, children, navigate, disableMuteIcon }) => {
 
   const openMutePage = () => {
-    navigate(muteScreen)
-
+      navigate(muteScreen)
   }
-
   return (
     <ImageBackground
       source={backgroundDot}
@@ -28,9 +26,11 @@ const Background = ({ requiredStyle, children, navigate }) => {
         <Text style={styles.footerText}>
           وَأَحْسِن كَمَا أَحْسَنَ اللَّهُ إِلَيْكَ
         </Text>
-        <Pressable onPress={() => openMutePage()}>
-        <FontAwesomeIcon icon={ faHandsAslInterpreting } color={ theme.colors.primary} size = {32} style = {styles.signLanguageIcon}/>
-        </Pressable>
+        {!disableMuteIcon && <View>
+            <Pressable style = {styles.signLanguageIcon} onPress={() => openMutePage()}>
+              <FontAwesomeIcon icon={faHandsAslInterpreting} color={theme.colors.primary} size={32} />
+            </Pressable>
+        </View>}
       </View>
     </ImageBackground>
   )
@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    // margin: '50%'
   },
   children: {
     position: "absolute"
@@ -59,15 +58,18 @@ const styles = StyleSheet.create({
     width: '100%',
     alignSelf: 'center',
   },
+  footer: {
+    display:"flex",
+    height:" 5%"
+  },
   footerText: {
     textAlign: 'center',
     color: theme.colors.primary,
-    marginBottom: '-6%'
+    alignSelf: "center"
   },
   signLanguageIcon : {
-    marginBottom : '3%',
-    marginHorizontal: '5%'
-
+    marginHorizontal: '5%',
+    marginTop: '-5%'
   }
 })
 
